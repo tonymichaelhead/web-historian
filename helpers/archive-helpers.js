@@ -44,6 +44,9 @@ exports.addUrlToList = function(url, callback) {
 };
 
 exports.isUrlArchived = function(url, callback) {
+  fs.readdir(exports.paths.archivedSites, function(err, urls) {
+    callback(_.contains(urls, url));
+  });
 };
 
 exports.downloadUrls = function(urls) {
