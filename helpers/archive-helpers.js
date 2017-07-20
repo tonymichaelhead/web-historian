@@ -19,7 +19,7 @@ exports.paths = {
 exports.initialize = function(pathsObj) {
   _.each(pathsObj, function(path, type) {
     exports.paths[type] = path;
-  });
+  }); 
 };
 
 // The following function names are provided to you to suggest how you might
@@ -27,16 +27,20 @@ exports.initialize = function(pathsObj) {
 
 exports.readListOfUrls = function(callback) {
   //return an array of urls
-  return fs.readFile('../archives/sites.txt', 'utf8', function(err, data) {
+  fs.readFile(this.paths.list, 'utf8', function(err, data) {
     if(err) throw err;
-    callback(null, data); //console.log(data);
-  })
+    callback(data.split('\n')); //console.log(data);
+  });
 };
 
 exports.isUrlInList = function(url, callback) {
+  this.readListOfUrls(function(urls) {
+    callback(_.contains(urls, url));
+  });
 };
 
 exports.addUrlToList = function(url, callback) {
+  fs.appendFile(exports.paths.list, url, callback);
 };
 
 exports.isUrlArchived = function(url, callback) {
