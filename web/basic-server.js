@@ -1,6 +1,7 @@
 var http = require('http');
 var handler = require('./request-handler');
 var initialize = require('./initialize.js');
+var fileList = require('../helpers/archive-helpers.js');
 
 // Why do you think we have this here?
 // HINT: It has to do with what's in .gitignore
@@ -17,3 +18,8 @@ if (module.parent) {
   console.log('Listening on http://' + ip + ':' + port);
 }
 
+fileList.isUrlInList('rasienstrnoeiars', function(data) {
+  return data;
+}) 
+
+//fileList.readListOfUrls(function(data) { return data});

@@ -20,7 +20,7 @@ exports.paths = {
 exports.initialize = function(pathsObj) {
   _.each(pathsObj, function(path, type) {
     exports.paths[type] = path;
-  });
+  }); 
 };
 
 // The following function names are provided to you to suggest how you might
